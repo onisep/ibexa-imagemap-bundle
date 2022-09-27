@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Onisep\ImageMapBundle\FieldType\ImageMap;
+namespace Onisep\IbexaImageMapBundle\FieldType\ImageMap;
 
 use eZ\Publish\Core\Base\Utils\DeprecationWarnerInterface as DeprecationWarner;
 use eZ\Publish\Core\FieldType\Image\AliasCleanerInterface;
@@ -14,7 +14,7 @@ use eZ\Publish\Core\IO\IOServiceInterface;
 use eZ\Publish\Core\IO\MetadataHandler;
 use eZ\Publish\SPI\Persistence\Content\Field;
 use eZ\Publish\SPI\Persistence\Content\VersionInfo;
-use Onisep\ImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\LegacyStorage as ImageMapStorageGateway;
+use Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\LegacyStorage as ImageMapStorageGateway;
 
 /**
  * Converter for ImageMap field type external storage.

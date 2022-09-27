@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Onisep\ImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway;
+namespace Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway;
 
 use eZ\Publish\SPI\Persistence\Content\Field;
 use eZ\Publish\SPI\Persistence\Content\VersionInfo;
-use Onisep\ImageMapBundle\Database\ImageMapRepository;
+use Onisep\IbexaImageMapBundle\Database\ImageMapRepository;
 
 class LegacyStorage
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Onisep\ImageMapBundle;
+namespace Onisep\IbexaImageMapBundle;
 
-use Onisep\ImageMapBundle\DependencyInjection\OnisepImageMapExtension;
+use Onisep\IbexaImageMapBundle\DependencyInjection\OnisepImageMapExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class OnisepImageMapBundle extends Bundle

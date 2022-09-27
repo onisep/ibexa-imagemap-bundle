@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Onisep\ImageMapBundle\DependencyInjection;
+namespace Onisep\IbexaImageMapBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

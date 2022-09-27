@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Onisep\ImageMapBundle\FieldType\ImageMap;
+namespace Onisep\IbexaImageMapBundle\FieldType\ImageMap;
 
 use eZ\Publish\Core\FieldType\FieldSettings;
 use eZ\Publish\Core\Persistence\Legacy\Content\FieldValue\Converter\ImageConverter;

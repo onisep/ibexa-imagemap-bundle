@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Onisep\ImageMapBundle\Database;
+namespace Onisep\IbexaImageMapBundle\Database;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Types\Types;

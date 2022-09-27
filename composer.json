@@ -25,12 +25,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Onisep\\ImageMapBundle\\": "src/"
+            "Onisep\\IbexaImageMapBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Onisep\\ImageMapBundle\\Tests\\": "tests/"
+            "Onisep\\IbexaImageMapBundle\\Tests\\": "tests/"
         }
     },
     "require": {
