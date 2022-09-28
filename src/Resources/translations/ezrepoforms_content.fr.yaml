@@ -1,0 +1,19 @@
+imagemap:
+    button:
+        draw:
+            rect: Dessiner un lien rectangulaire
+            circle: Dessiner un lien circulaire
+            poly: Dessiner un lien polygonal
+        link.label: Ajouter un lien
+    help:
+        rect: Cliquer pour placer un coin du rectangle, puis cliquer à nouveau pour placer le coin opposé. Appuyer sur Échap pour annuler.
+        circle: Cliquer pour placer le centre du cercle, puis cliquer à nouveau pour placer le bord du cercle. Appuyer sur Échap pour annuler.
+        poly: Cliquer pour placer chaque point du polygone. Appuyer sur Entrée quand vous avez terminé. Appuyer sur Échap pour annuler.
+    area:
+        button:
+            delete.label: Supprimer le lien
+    link:
+        internal: Lien interne
+        external: Lien externe
+        select_content: Sélectionner un autre contenu
+        no_content: Aucune relation

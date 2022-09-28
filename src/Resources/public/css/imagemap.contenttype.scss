@@ -1,0 +1,50 @@
+.imagemap-area {
+  border-radius: 0.25rem;
+  border: 2px dashed #dbdbdb;
+  padding: 1rem;
+  position: relative;
+
+  .imagemap-handle {
+    transform: rotate(45deg);
+    cursor: grabbing;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px
+  }
+
+  .imagemap-area-buttons {
+    padding-right: 0;
+  }
+
+  .imagemap-popin {
+    background: white;
+    border: 1px solid black;
+
+    svg {
+      fill: #17a2b8;
+      width: 40px;
+      height: 40px;
+    }
+
+    a:focus {
+      outline: none;
+    }
+  }
+}
+
+.imagemap-go-up {
+  height: 0;
+  position: sticky;
+  top: 10px;
+  margin-left: -60px;
+
+  svg {
+    width: 50px;
+    height: 50px;
+    fill: #17a2b8;
+  }
+}
+
+.imagemap-shape {
+  cursor: pointer;
+}

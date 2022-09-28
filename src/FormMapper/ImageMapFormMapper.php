@@ -11,6 +11,7 @@ use EzSystems\EzPlatformAdminUi\FieldType\Mapper\AbstractRelationFormMapper;
 use EzSystems\EzPlatformAdminUi\Form\Data\FieldDefinitionData;
 use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
 use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
+use Onisep\IbexaImageMapBundle\DataTransformer\ImageMapTransformer;
 use Onisep\IbexaImageMapBundle\FieldType\ImageMap\Value;
 use Onisep\IbexaImageMapBundle\Form\ImageMapType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
