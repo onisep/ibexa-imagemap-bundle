@@ -12,14 +12,14 @@ module.exports = (eZConfig, eZConfigManager) => {
         eZConfig,
         entryName: 'ezplatform-admin-ui-layout-js',
         newItems: [
-            path.resolve(__dirname, './assets/ezplatform/js/imagemap.contenttype.js'),
+            path.resolve(__dirname, '../public/js/imagemap.contenttype.js'),
         ],
     });
     eZConfigManager.add({
         eZConfig,
         entryName: 'ezplatform-admin-ui-layout-css',
         newItems: [
-            path.resolve(__dirname, './assets/ezplatform/css/imagemap.contenttype.scss'),
+            path.resolve(__dirname, '../public/css/imagemap.contenttype.scss'),
         ],
     });
 };

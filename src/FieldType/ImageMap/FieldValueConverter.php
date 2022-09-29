@@ -13,7 +13,7 @@ class FieldValueConverter extends ImageConverter
 {
     public function toStorageFieldDefinition(FieldDefinition $fieldDef, StorageFieldDefinition $storageDef): void
     {
-        $storageDef->dataText5 = serialize($fieldDef->fieldTypeConstraints->fieldSettings['selectionContentTypes']);
+        $storageDef->dataText5 = serialize($fieldDef->fieldTypeConstraints->fieldSettings['selectionContentTypes'] ?? []);
     }
 
     public function toFieldDefinition(StorageFieldDefinition $storageDef, FieldDefinition $fieldDef): void

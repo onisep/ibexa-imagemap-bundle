@@ -24,7 +24,7 @@ class ImageMapRepository
             'field_id' => $fieldId,
             'version' => $version,
             'map' => $map,
-            'modified' => new \DateTime(),
+            'modified' => new \DateTimeImmutable(),
         ], [
             'map' => Types::JSON,
             'modified' => Types::DATETIME_IMMUTABLE,
@@ -35,7 +35,7 @@ class ImageMapRepository
     {
         $this->connection->update(self::TABLE_NAME, [
             'map' => $map,
-            'modified' => new \DateTime(),
+            'modified' => new \DateTimeImmutable(),
         ], [
             'field_id' => $fieldId,
             'version' => $version,

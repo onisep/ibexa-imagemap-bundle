@@ -3,11 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { SVG } from '@svgdotjs/svg.js';
 import Sortable from 'sortablejs';
 import { createPopper } from '@popperjs/core';
-import "@interactjs/actions/drag";
-import "@interactjs/actions/resize";
-import "@interactjs/modifiers";
-import "@interactjs/auto-start";
-import interact from "@interactjs/interact";
+import '@interactjs/actions/drag';
+import '@interactjs/actions/resize';
+import '@interactjs/modifiers';
+import '@interactjs/auto-start';
+import interact from '@interactjs/interact';
 import './svg.draw.js';
 
 let drawing;
@@ -140,7 +140,6 @@ const initArea = function (area, map, draw) {
   const link = area.querySelector('.imagemap-relation-external-link');
   link.onchange = () => {
     source.value = link.value;
-    (source.onchange)();
   }
   initUDW(area.querySelector('.imagemap-relation'));
 
@@ -205,13 +204,11 @@ const changeLinkType = function (area) {
     externalBlock.querySelector('.imagemap-relation-external-link').value = '';
     internalBlock.hidden = true;
   }
-  (source.onchange)();
 }
 
 const confirmUDW = function (widget, container, e) {
   const source = widget.querySelector('.imagemap-relation-source');
   source.value = 'ezobject://'+e[0].ContentInfo.Content._id;
-  (source.onchange)();
   widget.querySelector('.imagemap-relation-name').textContent = e[0].ContentInfo.Content.TranslatedName;
   ReactDOM.unmountComponentAtNode(container);
 }

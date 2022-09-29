@@ -1,5 +1,7 @@
 services:
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Type:
+        arguments:
+            - ['@ezpublish.fieldType.validator.black_list', '@ezpublish.fieldType.validator.image']
         parent: ezpublish.fieldType
         tags:
             - { name: ezplatform.field_type, alias: imagemap }
@@ -57,9 +59,14 @@ services:
 
     Onisep\IbexaImageMapBundle\FormMapper\ImageMapFormMapper:
         arguments:
-            $contentService: '@eZ\Publish\API\Repository\ContentService'
+            $contentTypeService: '@eZ\Publish\API\Repository\ContentTypeService'
             $locationService: '@eZ\Publish\API\Repository\LocationService'
             $fieldTypeService: '@eZ\Publish\API\Repository\FieldTypeService'
         tags:
             - { name: ezplatform.field_type.form_mapper.definition, fieldType: imagemap }
             - { name: ezplatform.field_type.form_mapper.value, fieldType: imagemap }
+
+    Onisep\IbexaImageMapBundle\Command\SchemaCommand:
+        arguments:
+            $connection: '@ezpublish.persistence.connection'
+        tags: ['console.command']

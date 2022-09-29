@@ -1,7 +1,7 @@
 {% trans_default_domain 'ezrepoforms_content' %}
 
 {% block imagemap_row %}
-    <div class="imagemap">
+    <div class="imagemap" id="imagemap-container-{{ form.parent.vars.data.field.id }}">
         {% set label_wrapper_attr = label_wrapper_attr|default({})|merge({'class': (label_wrapper_attr.class|default('') ~ 'ez-field-edit__label-wrapper')|trim}) %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' ez-field-edit__label')|trim}) %}
         <div{% with { attr: label_wrapper_attr } %}{{ block('attributes') }}{% endwith %}>
@@ -23,6 +23,13 @@
         {{ block('binary_base_row') }}
         {{ form_row(form.map) }}
         <map class="imagemap-map" id="imagemap-{{ form.parent.vars.data.field.id }}" name="imagemap-{{ form.parent.vars.data.field.id }}"></map>
+        <div class="imagemap-popin imagemap-popin-proto" hidden>
+            <a href="#">
+                <svg>
+                    <use href="{{ asset('/bundles/onisepimagemap/images/remixicon.svg#ri-arrow-down-circle-fill') }}"></use>
+                </svg>
+            </a>
+        </div>
     </div>
 {% endblock %}
 
@@ -32,6 +39,13 @@
     {% endif %}
     <div {{ block('widget_attributes') }}>
         <div class="imagemap-areas">
+            <div class="imagemap-go-up">
+                <a href="#imagemap-container-{{ form.parent.parent.vars.data.field.id }}">
+                    <svg>
+                        <use href="{{ asset('/bundles/onisepimagemap/images/remixicon.svg#ri-arrow-up-circle-fill') }}"></use>
+                    </svg>
+                </a>
+            </div>
             {% for child in form.children %}
                 {{ form_row(child) }}
             {% endfor %}

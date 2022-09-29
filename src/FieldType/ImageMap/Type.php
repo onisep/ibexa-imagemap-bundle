@@ -18,6 +18,11 @@ class Type extends ImageType
         return 'imagemap';
     }
 
+    public function validateFieldSettings($fieldSettings)
+    {
+        return [];
+    }
+
     public function fromHash($hash)
     {
         return empty($hash) ? $this->getEmptyValue() : new Value($hash);

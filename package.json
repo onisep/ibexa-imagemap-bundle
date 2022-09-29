@@ -4,6 +4,7 @@
   "description": "Onisep Ibexa Imagemap Bundle",
   "repository": "https://github.com/onisep/ibexa-imagemap-bundle.git",
   "dependencies": {
+    "@interactjs/actions": "^1.10.17",
     "@interactjs/auto-start": "^1.10.17",
     "@interactjs/interact": "^1.10.17",
     "@interactjs/modifiers": "^1.10.17",
