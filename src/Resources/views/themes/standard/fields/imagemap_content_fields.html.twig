@@ -1,18 +1,9 @@
 {% block imagemap_field %}
     {% set map_id = 'imagemap_' ~ field.id %}
     {% set img = field.value %}
-    {% set link = false %}
-    {% set mapLocationId = [] %}
-    {% set refLocations = [] %}
     {% set classification = '' %}
     {% set imgWidth = img.width %}
     {% set imgHeight = img.height %}
-    {% set animationActivated = animationActivated ?? false %}
-    {% set animationActivatedStyle = '' %}
-
-    {% if animationActivated %}
-        {% set animationActivatedStyle = 'max-height: ' ~ imgHeight / (img.map | length + 1) ~ 'px;height: ' ~ imgHeight / (img.map | length + 1) ~ 'px;overflow-y: hidden;max-width:' ~ imgWidth ~ 'px;' %}
-    {% endif %}
 
     {% if objectParameters.class is defined %}
         {% set classification = objectParameters.class %}
@@ -23,10 +14,6 @@
     <div id="imagemap{{ field.id }}" class="image_map">
         <div class="image_map_node"
              data-type="inline"
-            {% if animationActivated == true %}
-                style="{{ animationActivatedStyle }}"
-                data-animation="true"
-            {% endif %}
         >
             <img src="{{ asset(img.uri) }}"
                  alt="{{ img.fileName }}"
@@ -46,12 +33,11 @@
                     {% endif %}
 
                     <area class="map" data-maptype="{{ classification }}" target="{{ imgMapItem.target }}"
-                          title="{{imgMapItem.description}}" href="{{ link }}" coords="{{ imgMapItem.position }}"
+                          title="{{ imgMapItem.description }}" href="{{ link }}" coords="{{ imgMapItem.position }}"
                           shape="{{ imgMapItem.shape }}"
                     >
                 {% endfor %}
             </map>
         </div>
     </div>
-
 {% endblock %}
