@@ -1,43 +1,52 @@
 {% block imagemap_field %}
     {% set map_id = 'imagemap_' ~ field.id %}
     {% set img = field.value %}
-    {% set classification = '' %}
-    {% set imgWidth = img.width %}
-    {% set imgHeight = img.height %}
+    {% set items = load_image_map_items(field) %}
 
-    {% if objectParameters.class is defined %}
-        {% set classification = objectParameters.class %}
-    {% else %}
-        {% set classification = '' %}
-    {% endif %}
-
-    <div id="imagemap{{ field.id }}" class="image_map">
-        <div class="image_map_node"
-             data-type="inline"
-        >
+    <div class="imagemap">
+        <div class="imagemap__image">
             <img src="{{ asset(img.uri) }}"
                  alt="{{ img.fileName }}"
                  title="{{ img.fileName }}"
                  usemap="#{{ map_id }}"
-                 width="{{ imgWidth }}"
-                 height="{{ imgHeight }}"
+                 width="{{ img.width }}"
+                 height="{{ img.height }}"
             />
-            <map id="{{ map_id }}" name="{{ map_id }}" class="maps">
-                {% for imgMapItem in load_image_map_items(field) %}
-                    {% set link = imgMapItem.link ?? '#' %}
+            <map id="{{ map_id }}" name="{{ map_id }}">
+                {% for item in items %}
+                    {% set link = item.link ?? '#' %}
                     {% set mapLocationId = '' %}
 
-                    {% if imgMapItem.content is defined %}
-                        {% set mapLocationId = imgMapItem.content.versionInfo.contentInfo.mainLocationId %}
-                        {% set link = path('ez_urlalias', {'locationId': mapLocationId}) %}
+                    {% if item.content is defined %}
+                        {% if item.target in ['embed', 'popin'] %}
+                            {% set link = '#' ~ (item.anchor ?: ('imagemap-target-' ~ field.id ~ '-' ~ item.content.id)) %}
+                        {% else %}
+                            {% set link = path('ez_urlalias', {'contentId': item.content.id}) %}
+                        {% endif %}
                     {% endif %}
 
-                    <area class="map" data-maptype="{{ classification }}" target="{{ imgMapItem.target }}"
-                          title="{{ imgMapItem.description }}" href="{{ link }}" coords="{{ imgMapItem.position }}"
-                          shape="{{ imgMapItem.shape }}"
+                    <area target="{{ item.target in ['embed', 'popin'] ? '_self' : item.target }}"
+                          {% if item.target in ['embed', 'popin'] %}data-mode="{{ item.target }}"{% endif %}
+                          title="{{ item.description }}" href="{{ link }}"
+                          coords="{{ item.position }}" shape="{{ item.shape }}"
                     >
                 {% endfor %}
             </map>
+        </div>
+        <div class="imagemap__embeds">
+            {% for item in items|filter((item) => item.target == 'embed')|filter((item) => item.content is defined) %}
+                {% set id = item.anchor ?: 'imagemap-target-' ~ field.id ~ '-' ~ item.content.id %}
+                <div id="{{ id }}" class="imagemap__embeds__item" hidden>
+                    {{ ez_render_content(item.content, {'viewType': 'imagemap_embed'}) }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="imagemap__popins">
+            {% for item in items|filter((item) => item.target == 'popin')|filter((item) => item.content is defined) %}
+                <div id="imagemap-target-{{ field.id}}-{{ item.content.id }}" class="imagemap__popins__item" hidden>
+                    {{ ez_render_content(item.content, {'viewType': 'imagemap_popin'}) }}
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

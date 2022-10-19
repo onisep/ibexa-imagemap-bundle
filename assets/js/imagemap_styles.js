@@ -1,1 +1,1 @@
-import '../css/imagemap.contenttype.scss';
+import '../css/imagemap.scss';

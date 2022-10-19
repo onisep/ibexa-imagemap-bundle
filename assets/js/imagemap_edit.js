@@ -158,6 +158,10 @@ const initArea = function (area, map, draw) {
         }
       }
   );
+
+  const target = area.querySelector('select.imagemap-area-target');
+  target.onchange = () => area.querySelector('.imagemap-area-anchor').hidden = target.value !== 'embed';
+
   recreateShape(area, draw);
 }
 

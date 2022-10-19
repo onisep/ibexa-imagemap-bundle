@@ -1,5 +1,8 @@
 {
-  "imagemap_edit.js": "/imagemap_edit.9ad14f36.js",
-  "imagemap_styles.css": "/imagemap_styles.9a6339fb.css",
-  "imagemap_styles.js": "/imagemap_styles.31d6cfe0.js"
+  "imagemap_edit.js": "/imagemap_edit.js",
+  "imagemap_edit_styles.css": "/imagemap_edit_styles.css",
+  "imagemap_edit_styles.js": "/imagemap_edit_styles.js",
+  "imagemap_styles.css": "/imagemap_styles.css",
+  "imagemap_styles.js": "/imagemap_styles.js",
+  "imagemap.js": "/imagemap.js"
 }

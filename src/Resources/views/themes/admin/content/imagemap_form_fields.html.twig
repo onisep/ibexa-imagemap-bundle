@@ -76,9 +76,9 @@
                 {{ form_row(form.position, {'attr': {'class': 'imagemap-area-input', 'data-prop': 'coords'}}) }}
             </div>
             <div class="col-3">
-                {{ form_row(form.target) }}
+                {{ form_row(form.target, {'attr': {'class': 'imagemap-area-target'}}) }}
             </div>
-            <div class="col-3">
+            <div class="col-3 imagemap-area-anchor" {% if form.children.target.vars.value != 'embed' %}hidden{% endif %}>
                 {{ form_row(form.anchor) }}
             </div>
         </div>

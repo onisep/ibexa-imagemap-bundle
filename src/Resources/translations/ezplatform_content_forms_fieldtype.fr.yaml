@@ -14,5 +14,7 @@ onisep:
             target:
                 self: Même fenêtre
                 blank: Nouvelle fenêtre
+                embed: Imbriqué
+                popin: Popin
                 label: Cible
             anchor.label: Ancre

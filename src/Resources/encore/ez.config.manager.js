@@ -5,14 +5,22 @@ module.exports = (eZConfig, eZConfigManager) => {
         eZConfig,
         entryName: 'ezplatform-admin-ui-content-edit-parts-js',
         newItems: [
-            path.resolve(__dirname, '../public/build/imagemap_edit.9ad14f36.js'),
+            path.resolve(__dirname, '../public/build/imagemap_edit.js'),
+        ],
+    });
+    eZConfigManager.add({
+        eZConfig,
+        entryName: 'ezplatform-admin-ui-layout-js',
+        newItems: [
+            path.resolve(__dirname, '../public/build/imagemap.js'),
         ],
     });
     eZConfigManager.add({
         eZConfig,
         entryName: 'ezplatform-admin-ui-layout-css',
         newItems: [
-            path.resolve(__dirname, '../public/build/imagemap_styles.9a6339fb.css'),
+            path.resolve(__dirname, '../public/build/imagemap_edit_styles.css'),
+            path.resolve(__dirname, '../public/build/imagemap_styles.css'),
         ],
     });
 };

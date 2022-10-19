@@ -36,10 +36,10 @@ class MapAreaType extends AbstractType
             ])
             ->add('target', ChoiceType::class, [
                 'choices' => [
-//                    'Fenêtre en cours' => '_realSelf',
                     'onisep.imagemap.maparea.target.self' => '_self',
                     'onisep.imagemap.maparea.target.blank' => '_blank',
-//                    'Popin' => 'popin',
+                    'onisep.imagemap.maparea.target.embed' => 'embed',
+                    'onisep.imagemap.maparea.target.popin' => 'popin',
                 ],
                 'label' => 'onisep.imagemap.maparea.target.label',
             ])
