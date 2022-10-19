@@ -43,8 +43,12 @@
         </div>
         <div class="imagemap__popins">
             {% for item in items|filter((item) => item.target == 'popin')|filter((item) => item.content is defined) %}
-                <div id="imagemap-target-{{ field.id}}-{{ item.content.id }}" class="imagemap__popins__item" hidden>
-                    {{ ez_render_content(item.content, {'viewType': 'imagemap_popin'}) }}
+                <div id="imagemap-target-{{ field.id}}-{{ item.content.id }}" class="imagemap__popins__item">
+                    <div class="imagemap__popins__item__bg imagemap__popins__item__exit"></div>
+                    <div class="imagemap__popins__item__container">
+                        {{ ez_render_content(item.content, {'viewType': 'imagemap_popin'}) }}
+                        <button class="imagemap__popins__item__close imagemap__popins__item__exit">X</button>
+                    </div>
                 </div>
             {% endfor %}
         </div>
