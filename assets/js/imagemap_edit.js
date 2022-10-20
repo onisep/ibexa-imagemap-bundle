@@ -378,6 +378,6 @@ const recreateShape = function (area, draw) {
   }
 }
 
-document.querySelectorAll('.imagemap').forEach(
+document.querySelectorAll('.imagemap-edit').forEach(
     (imageMap) => initImageMap(imageMap)
 );

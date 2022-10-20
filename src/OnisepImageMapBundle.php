@@ -18,7 +18,7 @@ class OnisepImageMapBundle extends Bundle
         $container->addCompilerPass(new AddDefaultViewTemplatePass());
     }
 
-    protected function getContainerExtensionClass()
+    protected function getContainerExtensionClass(): string
     {
         return OnisepImageMapExtension::class;
     }

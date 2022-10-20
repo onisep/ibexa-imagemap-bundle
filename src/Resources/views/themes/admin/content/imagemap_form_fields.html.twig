@@ -1,7 +1,7 @@
 {% trans_default_domain 'ezrepoforms_content' %}
 
 {% block imagemap_row %}
-    <div class="imagemap" id="imagemap-container-{{ form.parent.vars.data.field.id }}">
+    <div class="imagemap-edit" id="imagemap-container-{{ form.parent.vars.data.field.id }}">
         {% set label_wrapper_attr = label_wrapper_attr|default({})|merge({'class': (label_wrapper_attr.class|default('') ~ 'ez-field-edit__label-wrapper')|trim}) %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' ez-field-edit__label')|trim}) %}
         <div{% with { attr: label_wrapper_attr } %}{{ block('attributes') }}{% endwith %}>
