@@ -4,5 +4,6 @@ system:
             content_edit_form_templates:
                 - { template: '@ezdesign/content/imagemap_form_fields.html.twig', priority: 1 }
 
+    default:
         field_templates:
             - { template: '@ezdesign/fields/imagemap_content_fields.html.twig', priority: 0 }

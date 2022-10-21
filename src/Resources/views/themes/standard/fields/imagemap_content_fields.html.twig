@@ -18,8 +18,10 @@
                     {% set mapLocationId = '' %}
 
                     {% if item.content is defined %}
-                        {% if item.target in ['embed', 'popin'] %}
+                        {% if item.target == 'embed' %}
                             {% set link = '#' ~ (item.anchor ?: ('imagemap-target-' ~ field.id ~ '-' ~ item.content.id)) %}
+                        {% elseif item.target == 'popin' %}
+                            {% set link = '#imagemap-target-' ~ field.id ~ '-' ~ item.content.id %}
                         {% else %}
                             {% set link = path('ez_urlalias', {'contentId': item.content.id}) %}
                         {% endif %}

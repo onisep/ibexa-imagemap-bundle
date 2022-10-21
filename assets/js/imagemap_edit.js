@@ -12,8 +12,6 @@ import './svg.draw.js';
 
 let drawing;
 
-document.addEventListener('dragstart', (event) =>  event.preventDefault());
-
 const keyPress = function (imageMap, e) {
   if (e.keyCode === 27 && drawing) {
     const drawingCp = drawing;
@@ -50,6 +48,8 @@ const finishDraw = function (imageMap, draw) {
       select.value = 'poly';
       break;
   }
+
+  coords.value = coords.value.split(',').map((value) => parseInt(value)).join(',');
 
   drawing.remove();
   drawing = null;
@@ -91,9 +91,7 @@ const drawShape = function (imageMap, shape, draw) {
 }
 
 const initDraw = function (image, draw) {
-  const w = image.naturalWidth;
-  const h = image.naturalHeight;
-  draw.viewbox(0, 0, w, h).css({'position': 'absolute', 'width': `${w}px`, 'height': `${h}px`});
+  draw.viewbox(0, 0, image.naturalWidth, image.naturalHeight).css({'position': 'absolute', 'width': `${image.width}px`, 'height': `${image.height}px`});
 }
 
 const initImageMap = function (imageMap) {
