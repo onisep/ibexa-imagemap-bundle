@@ -82,7 +82,7 @@ class SchemaCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->text('Execute these SQL Queries on your database:');
         foreach ($sqls as $sql) {
-            $io->text($sql . ';');
+            $io->text($sql.';');
         }
 
         return 0;

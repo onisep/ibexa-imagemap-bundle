@@ -45,7 +45,7 @@ class Type extends ImageType
 
     public function fromPersistenceValue(PersistenceValue $fieldValue)
     {
-        if ($fieldValue->data === null) {
+        if (null === $fieldValue->data) {
             return $this->getEmptyValue();
         }
 

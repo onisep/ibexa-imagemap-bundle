@@ -22,7 +22,7 @@ class OnisepImageMapExtension extends Extension implements PrependExtensionInter
 
     public function prepend(ContainerBuilder $container)
     {
-        $adminUiFormsConfigFile = __DIR__ . '/../Resources/config/admin_ui_forms.yaml';
+        $adminUiFormsConfigFile = __DIR__.'/../Resources/config/admin_ui_forms.yaml';
         $config = Yaml::parseFile($adminUiFormsConfigFile);
         $container->prependExtensionConfig('ezpublish', $config);
         $container->addResource(new FileResource($adminUiFormsConfigFile));
