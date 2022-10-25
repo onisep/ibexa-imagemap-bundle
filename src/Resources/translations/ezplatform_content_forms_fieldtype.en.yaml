@@ -1,0 +1,20 @@
+onisep:
+    imagemap:
+        zones.label: Zones
+        maparea:
+            shape:
+                rect: Rectangle
+                circle: Circle
+                poly: Polygon
+                full: Whole image
+                label: Shape
+            coordinates.label: Coordinates
+            description.label: Description
+            link.label: Link
+            target:
+                self: Same Tab
+                blank: New tab
+                embed: Embed
+                popin: Popin
+                label: Target
+            anchor.label: Anchor

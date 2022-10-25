@@ -160,6 +160,11 @@ const initArea = function (area, map, draw) {
   const target = area.querySelector('select.imagemap-area-target');
   target.onchange = () => area.querySelector('.imagemap-area-anchor').hidden = target.value !== 'embed';
 
+  if (select.value === 'external') {
+    target.querySelector('option[value="embed"]').hidden = true;
+    target.querySelector('option[value="popin"]').hidden = true;
+  }
+
   recreateShape(area, draw);
 }
 
@@ -196,15 +201,26 @@ const changeLinkType = function (area) {
   const internalBlock = area.querySelector('.imagemap-relation-internal');
   const externalBlock = area.querySelector('.imagemap-relation-external');
   const source = area.querySelector('.imagemap-relation-source');
+  const target = area.querySelector('.imagemap-area-target');
   source.value = '';
   if (this.value === 'internal') {
     internalBlock.hidden = false;
     internalBlock.querySelector('.imagemap-relation-name').textContent = '';
     externalBlock.hidden = true;
+
+    if (target.value === 'embed' || target.value === 'popin') {
+      target.value = '_blank';
+    }
+
+    target.querySelector('option[value="embed"]').hidden = true;
+    target.querySelector('option[value="popin"]').hidden = true;
   } else {
     externalBlock.hidden = false;
     externalBlock.querySelector('.imagemap-relation-external-link').value = '';
     internalBlock.hidden = true;
+
+    target.querySelector('option[value="embed"]').hidden = false;
+    target.querySelector('option[value="popin"]').hidden = false;
   }
 }
 

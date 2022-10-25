@@ -1,0 +1,19 @@
+imagemap:
+    button:
+        draw:
+            rect: Draw a rectangular link
+            circle: Draw a circular link
+            poly: Draw a polygonal link
+        link.label: Add a link
+    help:
+        rect: Click to place a corner of the rectangle, then click again to place the opposite corner. Press Esc to cancel.
+        circle: Click to place the center of the circle, then click again to place the edge of the circle. Press Esc to cancel.
+        poly: Click to place each point of the polygon. Press Enter when finished. Press Esc to cancel.
+    area:
+        button:
+            delete.label: Delete link
+    link:
+        internal: Internal link
+        external: External link
+        select_content: Select another content
+        no_content: No relation
