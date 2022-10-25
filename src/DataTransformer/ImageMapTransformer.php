@@ -11,7 +11,7 @@ class ImageMapTransformer extends ImageValueTransformer
 {
     public function transform($value)
     {
-        return parent::transform($value) + ['map' => $value->map];
+        return ['map' => $value->map] + parent::transform($value);
     }
 
     public function reverseTransform($value)
