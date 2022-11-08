@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     trigger.addEventListener('click', (e) => {
                         e.preventDefault();
                         target.classList.remove('imagemap__popins__item-open');
+                        target.dispatchEvent(new Event('imagemap-popin-closed'));
                     })
                 })
             }
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.querySelector(this.getAttribute('href'));
         if (!target.hidden) {
             target.hidden = true;
+            target.dispatchEvent(new Event('imagemap-embed-closed'));
 
             return;
         }
@@ -34,12 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
             top: target.offsetTop,
             behavior: 'smooth',
         });
+        target.dispatchEvent(new Event('imagemap-embed-opened'));
     }
 
     const openPopin = function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         target.classList.add('imagemap__popins__item-open');
+        target.dispatchEvent(new Event('imagemap-popin-opened'));
     }
 
     imageMapResize('.imagemap map');
