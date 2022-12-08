@@ -23,12 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollToEmbed = function (imageMap, e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (!target.hidden) {
+        const alreadyOpened = !target.hidden;
+        if (alreadyOpened && this.dataset.active === 'true') {
+            this.dataset.active = 'false';
             target.hidden = true;
             target.dispatchEvent(new Event('imagemap-embed-closed'));
 
             return;
         }
+        imageMap.querySelectorAll('area[data-active="true"]').forEach((item) => item.dataset.active = 'false');
+        this.dataset.active = 'true';
 
         imageMap.querySelectorAll('.imagemap__embeds__item:not([hidden])').forEach((item) => item.hidden = true);
         target.hidden = false;
@@ -36,7 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
             top: target.offsetTop,
             behavior: 'smooth',
         });
-        target.dispatchEvent(new Event('imagemap-embed-opened'));
+
+        if (!alreadyOpened) {
+            target.dispatchEvent(new Event('imagemap-embed-opened'));
+        }
     }
 
     const openPopin = function (e) {
