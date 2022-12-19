@@ -70,3 +70,8 @@ services:
         arguments:
             $connection: '@ezpublish.persistence.connection'
         tags: ['console.command']
+
+    onisep.imagemap.unindexed:
+        class: eZ\Publish\Core\FieldType\Unindexed
+        tags:
+            - { name: ezplatform.field_type.indexable, alias: imagemap }
