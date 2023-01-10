@@ -36,8 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         imageMap.querySelectorAll('.imagemap__embeds__item:not([hidden])').forEach((item) => item.hidden = true);
         target.hidden = false;
-        scroll({
-            top: target.offsetTop,
+        target.scrollIntoView({
             behavior: 'smooth',
         });
 
