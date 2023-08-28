@@ -10,7 +10,8 @@ use Onisep\IbexaImageMapBundle\Database\ImageMapRepository;
 
 class LegacyStorage
 {
-    private ImageMapRepository $repository;
+    /** @var ImageMapRepository */
+    private $repository;
 
     public function __construct(ImageMapRepository $repository)
     {

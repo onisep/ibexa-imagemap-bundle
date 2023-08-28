@@ -11,7 +11,8 @@ class ImageMapRepository
 {
     public const TABLE_NAME = 'onisep_imagemap';
 
-    private Connection $connection;
+    /** @var Connection */
+    private $connection;
 
     public function __construct(Connection $connection)
     {

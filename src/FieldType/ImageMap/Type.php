@@ -58,7 +58,6 @@ class Type extends ImageType
             'imageId' => $fieldValue->data['imageId'] ?? null,
             'width' => $fieldValue->data['width'] ?? null,
             'height' => $fieldValue->data['height'] ?? null,
-            'additionalData' => $fieldValue->data['additionalData'] ?? [],
             'map' => $fieldValue->data['map'] ?? [],
         ]);
     }

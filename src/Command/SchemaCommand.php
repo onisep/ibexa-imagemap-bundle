@@ -19,7 +19,8 @@ class SchemaCommand extends Command
 {
     protected static $defaultName = 'onisep:imagemap:dump-schema';
 
-    private Connection $connection;
+    /** @var Connection */
+    private $connection;
 
     public function __construct(Connection $connection)
     {

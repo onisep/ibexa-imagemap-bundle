@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\DataTransformer;
 
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\ImageValueTransformer;
+use EzSystems\RepositoryForms\FieldType\DataTransformer\ImageValueTransformer;
 use Onisep\IbexaImageMapBundle\FieldType\ImageMap\Value;
 
 class ImageMapTransformer extends ImageValueTransformer

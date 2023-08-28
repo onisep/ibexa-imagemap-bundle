@@ -11,5 +11,6 @@ use eZ\Publish\Core\FieldType\Image\Value as ImageValue;
  */
 class Value extends ImageValue
 {
-    public array $map = [];
+    /** @var array */
+    public $map = [];
 }

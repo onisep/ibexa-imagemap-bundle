@@ -39,7 +39,7 @@
             {% for item in items|filter((item) => item.target == 'embed')|filter((item) => item.content is defined) %}
                 {% set id = item.anchor ?: 'imagemap-target-' ~ field.id ~ '-' ~ item.content.id %}
                 <div id="{{ id }}" class="imagemap__embeds__item" hidden>
-                    {{ ez_render_content(item.content, {'viewType': 'imagemap_embed'}) }}
+                    {{ render(controller('ez_content:viewAction', {'contentId': item.content.id, 'viewType': 'imagemap_embed'})) }}
                 </div>
             {% endfor %}
         </div>
@@ -48,7 +48,7 @@
                 <div id="imagemap-target-{{ field.id}}-{{ item.content.id }}" class="imagemap__popins__item">
                     <div class="imagemap__popins__item__bg imagemap__popins__item__exit"></div>
                     <div class="imagemap__popins__item__container">
-                        {{ ez_render_content(item.content, {'viewType': 'imagemap_popin'}) }}
+                        {{ render(controller('ez_content:viewAction', {'contentId': item.content.id, 'viewType': 'imagemap_popin'})) }}
                         <button class="imagemap__popins__item__close imagemap__popins__item__exit">X</button>
                     </div>
                 </div>

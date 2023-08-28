@@ -4,7 +4,7 @@ services:
             - ['@ezpublish.fieldType.validator.black_list', '@ezpublish.fieldType.validator.image']
         parent: ezpublish.fieldType
         tags:
-            - { name: ezplatform.field_type, alias: imagemap }
+            - { name: ezpublish.fieldType, alias: imagemap }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Storage:
         arguments:
@@ -17,19 +17,17 @@ services:
             - '@?ezpublish.image_alias.imagine.alias_cleaner'
             - '@eZ\Publish\Core\IO\FilePathNormalizerInterface'
         tags:
-            - { name: ezplatform.field_type.external_storage_handler, alias: imagemap }
+            - { name: ezpublish.fieldType.externalStorageHandler, alias: imagemap }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\FieldValueConverter:
         arguments:
             - '@ezpublish.fieldType.ezimage.io_service'
             - '@ezpublish.core.io.image_fieldtype.legacy_url_redecorator'
         tags:
-            - { name: ezplatform.field_type.legacy_storage.converter, alias: imagemap, lazy: true, callback: '::create' }
+            - { name: ezpublish.storageEngine.legacy.converter, alias: imagemap, lazy: true, callback: '::create' }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\LegacyStorage:
         arguments: ['@Onisep\IbexaImageMapBundle\Database\ImageMapRepository']
-        tags:
-            - { name: ezplatform.field_type.external_storage_handler.gateway, alias: imagemap, identifier: LegacyStorage }
 
     Onisep\IbexaImageMapBundle\Database\ImageMapRepository:
         arguments: ['@ezpublish.persistence.connection']
@@ -63,8 +61,8 @@ services:
             $locationService: '@eZ\Publish\API\Repository\LocationService'
             $fieldTypeService: '@eZ\Publish\API\Repository\FieldTypeService'
         tags:
-            - { name: ezplatform.field_type.form_mapper.definition, fieldType: imagemap }
-            - { name: ezplatform.field_type.form_mapper.value, fieldType: imagemap }
+            - { name: ez.fieldFormMapper.definition, fieldType: imagemap }
+            - { name: ez.fieldFormMapper.value, fieldType: imagemap }
 
     Onisep\IbexaImageMapBundle\Command\SchemaCommand:
         arguments:
@@ -74,4 +72,4 @@ services:
     onisep.imagemap.unindexed:
         class: eZ\Publish\Core\FieldType\Unindexed
         tags:
-            - { name: ezplatform.field_type.indexable, alias: imagemap }
+            - { name: ezpublish.fieldType.indexable, alias: imagemap }

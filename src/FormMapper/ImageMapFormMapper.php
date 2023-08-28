@@ -7,10 +7,10 @@ namespace Onisep\IbexaImageMapBundle\FormMapper;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\FieldTypeService;
 use eZ\Publish\API\Repository\LocationService;
-use EzSystems\EzPlatformAdminUi\FieldType\Mapper\AbstractRelationFormMapper;
-use EzSystems\EzPlatformAdminUi\Form\Data\FieldDefinitionData;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
+use EzSystems\RepositoryForms\Data\Content\FieldData;
+use EzSystems\RepositoryForms\Data\FieldDefinitionData;
+use EzSystems\RepositoryForms\FieldType\FieldValueFormMapperInterface;
+use EzSystems\RepositoryForms\FieldType\Mapper\AbstractRelationFormMapper;
 use Onisep\IbexaImageMapBundle\DataTransformer\ImageMapTransformer;
 use Onisep\IbexaImageMapBundle\FieldType\ImageMap\Value;
 use Onisep\IbexaImageMapBundle\Form\ImageMapType;
@@ -19,7 +19,8 @@ use Symfony\Component\Form\FormInterface;
 
 class ImageMapFormMapper extends AbstractRelationFormMapper implements FieldValueFormMapperInterface
 {
-    private FieldTypeService $fieldTypeService;
+    /** @var FieldTypeService */
+    private $fieldTypeService;
 
     public function __construct(
         ContentTypeService $contentTypeService,

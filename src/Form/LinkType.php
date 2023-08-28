@@ -12,7 +12,8 @@ use Symfony\Component\Form\FormView;
 
 class LinkType extends AbstractType
 {
-    private ContentService $contentService;
+    /** @var ContentService */
+    private $contentService;
 
     public function __construct(ContentService $contentService)
     {

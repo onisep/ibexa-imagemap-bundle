@@ -21,7 +21,8 @@ use Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\Legacy
  */
 class Storage extends ImageStorage
 {
-    private ImageMapStorageGateway $imageMapGateway;
+    /** @var ImageMapStorageGateway */
+    private $imageMapGateway;
 
     public function __construct(
         ImageStorageGateway $baseGateway,

@@ -12,8 +12,11 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class ImageMapRuntime implements RuntimeExtensionInterface
 {
-    private LocationService $locationService;
-    private ContentService $contentService;
+    /** @var LocationService */
+    private $locationService;
+
+    /** @var ContentService */
+    private $contentService;
 
     public function __construct(LocationService $locationService, ContentService $contentService)
     {
