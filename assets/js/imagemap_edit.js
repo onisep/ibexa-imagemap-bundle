@@ -37,19 +37,22 @@ const finishDraw = function (imageMap, draw) {
   switch (drawing.node.tagName) {
     case 'rect':
       coords.value = `${drawing.x()},${drawing.y()},${drawing.width() + drawing.x() - 1},${drawing.height() + drawing.y() - 1}`;
+      coords.value = coords.value.split(',').map((value) => parseInt(value)).join(',');
       select.value = 'rect';
       break;
     case 'circle':
       coords.value = `${drawing.cx()},${drawing.cy()},${drawing.radius()}`;
+      coords.value = coords.value.split(',').map((value) => parseInt(value)).join(',');
       select.value = 'circle';
       break;
     case 'polygon':
       coords.value = drawing.node.getAttribute('points');
+      coords.value = coords.value.split(' ').map(
+          (pair) => pair.split(',').map((value) => parseInt(value)).join(',')
+      ).join(' ');
       select.value = 'poly';
       break;
   }
-
-  coords.value = coords.value.split(',').map((value) => parseInt(value)).join(',');
 
   drawing.remove();
   drawing = null;
