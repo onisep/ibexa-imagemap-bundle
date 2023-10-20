@@ -72,6 +72,6 @@ services:
         tags: ['console.command']
 
     onisep.imagemap.unindexed:
-        class: eZ\Publish\Core\FieldType\Unindexed
+        class: Ibexa\Core\FieldType\Unindexed
         tags:
             - { name: ibexa.field_type.indexable, alias: imagemap }
