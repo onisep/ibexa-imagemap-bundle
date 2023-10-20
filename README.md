@@ -1,6 +1,6 @@
 # Onisep Ibexa Imagemap Bundle
 
-This bundle provides an image map field type for Ibexa 3.3+.
+This bundle provides an image map field type for Ibexa 4.0+.
 
 ## Installation
 

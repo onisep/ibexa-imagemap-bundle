@@ -1,51 +1,51 @@
 services:
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Type:
         arguments:
-            - ['@ezpublish.fieldType.validator.black_list', '@ezpublish.fieldType.validator.image']
-        parent: ezpublish.fieldType
+            - ['@ibexa.fieldType.validator.black_list', '@ibexa.fieldType.validator.image']
+        parent: ibexa.fieldType
         tags:
-            - { name: ezplatform.field_type, alias: imagemap }
+            - { name: ibexa.field_type, alias: imagemap }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Storage:
         arguments:
-            - '@ezpublish.fieldType.ezimage.storage_gateway'
-            - '@ezpublish.fieldType.ezimage.io_service'
-            - '@ezpublish.fieldType.ezimage.pathGenerator'
-            - '@ezpublish.fieldType.metadataHandler.imagesize'
-            - '@ezpublish.utils.deprecation_warner'
+            - '@ibexa.fieldType.ezimage.storage_gateway'
+            - '@ibexa.fieldType.ezimage.io_service'
+            - '@ibexa.fieldType.ezimage.pathGenerator'
+            - '@ibexa.fieldType.metadataHandler.imagesize'
+            - '@ibexa.utils.deprecation_warner'
             - '@Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\LegacyStorage'
-            - '@?ezpublish.image_alias.imagine.alias_cleaner'
-            - '@eZ\Publish\Core\IO\FilePathNormalizerInterface'
+            - '@?ibexa.image_alias.imagine.alias_cleaner'
+            - '@Ibexa\Core\IO\FilePathNormalizerInterface'
         tags:
-            - { name: ezplatform.field_type.external_storage_handler, alias: imagemap }
+            - { name: ibexa.field_type.external_storage_handler, alias: imagemap }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\FieldValueConverter:
         arguments:
-            - '@ezpublish.fieldType.ezimage.io_service'
-            - '@ezpublish.core.io.image_fieldtype.legacy_url_redecorator'
+            - '@ibexa.fieldType.ezimage.io_service'
+            - '@ibexa.core.io.image_fieldtype.legacy_url_redecorator'
         tags:
-            - { name: ezplatform.field_type.legacy_storage.converter, alias: imagemap, lazy: true, callback: '::create' }
+            - { name: ibexa.field_type.legacy_storage.converter, alias: imagemap, lazy: true, callback: '::create' }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\LegacyStorage:
         arguments: ['@Onisep\IbexaImageMapBundle\Database\ImageMapRepository']
         tags:
-            - { name: ezplatform.field_type.external_storage_handler.gateway, alias: imagemap, identifier: LegacyStorage }
+            - { name: ibexa.field_type.external_storage_handler.gateway, alias: imagemap, identifier: LegacyStorage }
 
     Onisep\IbexaImageMapBundle\Database\ImageMapRepository:
-        arguments: ['@ezpublish.persistence.connection']
+        arguments: ['@ibexa.persistence.connection']
 
     Onisep\IbexaImageMapBundle\Twig\ImageMapExtension:
         tags: ['twig.extension']
 
     Onisep\IbexaImageMapBundle\Twig\ImageMapRuntime:
         arguments:
-            $locationService: '@eZ\Publish\API\Repository\LocationService'
-            $contentService: '@eZ\Publish\API\Repository\ContentService'
+            $locationService: '@Ibexa\Contracts\Core\Repository\LocationService'
+            $contentService: '@Ibexa\Contracts\Core\Repository\ContentService'
         tags: ['twig.runtime']
 
     Onisep\IbexaImageMapBundle\Form\LinkType:
         arguments:
-            $contentService: '@eZ\Publish\API\Repository\ContentService'
+            $contentService: '@Ibexa\Contracts\Core\Repository\ContentService'
         tags: ['form.type']
 
     Onisep\IbexaImageMapBundle\Form\MapAreaType:
@@ -59,19 +59,19 @@ services:
 
     Onisep\IbexaImageMapBundle\FormMapper\ImageMapFormMapper:
         arguments:
-            $contentTypeService: '@eZ\Publish\API\Repository\ContentTypeService'
-            $locationService: '@eZ\Publish\API\Repository\LocationService'
-            $fieldTypeService: '@eZ\Publish\API\Repository\FieldTypeService'
+            $contentTypeService: '@Ibexa\Contracts\Core\Repository\ContentTypeService'
+            $locationService: '@Ibexa\Contracts\Core\Repository\LocationService'
+            $fieldTypeService: '@Ibexa\Contracts\Core\Repository\FieldTypeService'
         tags:
-            - { name: ezplatform.field_type.form_mapper.definition, fieldType: imagemap }
-            - { name: ezplatform.field_type.form_mapper.value, fieldType: imagemap }
+            - { name: ibexa.field_type.form_mapper.definition, fieldType: imagemap }
+            - { name: ibexa.field_type.form_mapper.value, fieldType: imagemap }
 
     Onisep\IbexaImageMapBundle\Command\SchemaCommand:
         arguments:
-            $connection: '@ezpublish.persistence.connection'
+            $connection: '@ibexa.persistence.connection'
         tags: ['console.command']
 
     onisep.imagemap.unindexed:
         class: eZ\Publish\Core\FieldType\Unindexed
         tags:
-            - { name: ezplatform.field_type.indexable, alias: imagemap }
+            - { name: ibexa.field_type.indexable, alias: imagemap }

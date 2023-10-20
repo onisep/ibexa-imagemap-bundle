@@ -28,9 +28,6 @@ class SchemaCommand extends Command
         $this->connection = $connection;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure()
     {
         $this
@@ -40,9 +37,6 @@ class SchemaCommand extends Command
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $schemaProvider = new SchemaProvider();

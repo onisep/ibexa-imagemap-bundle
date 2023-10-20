@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\Form;
 
-use eZ\Publish\API\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\ContentService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
