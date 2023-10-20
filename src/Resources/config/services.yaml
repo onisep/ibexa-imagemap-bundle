@@ -2,7 +2,6 @@ services:
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Type:
         arguments:
             - ['@ibexa.fieldType.validator.black_list', '@ibexa.fieldType.validator.image']
-        parent: ibexa.fieldType
         tags:
             - { name: ibexa.field_type, alias: imagemap }
 
