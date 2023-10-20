@@ -1,7 +1,8 @@
 services:
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Type:
         arguments:
-            - ['@ibexa.field_type.validator.black_list', '@ibexa.field_type.validator.image']
+            - [ '@Ibexa\Core\FieldType\Validator\FileExtensionBlackListValidator', '@Ibexa\Core\FieldType\Validator\ImageValidator' ]
+        parent: Ibexa\Core\FieldType\FieldType
         tags:
             - { name: ibexa.field_type, alias: imagemap }
 
@@ -26,35 +27,35 @@ services:
             - { name: ibexa.field_type.legacy_storage.converter, alias: imagemap, lazy: true, callback: '::create' }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\LegacyStorage:
-        arguments: ['@Onisep\IbexaImageMapBundle\Database\ImageMapRepository']
+        arguments: [ '@Onisep\IbexaImageMapBundle\Database\ImageMapRepository' ]
         tags:
             - { name: ibexa.field_type.external_storage_handler.gateway, alias: imagemap, identifier: LegacyStorage }
 
     Onisep\IbexaImageMapBundle\Database\ImageMapRepository:
-        arguments: ['@ibexa.persistence.connection']
+        arguments: [ '@ibexa.persistence.connection' ]
 
     Onisep\IbexaImageMapBundle\Twig\ImageMapExtension:
-        tags: ['twig.extension']
+        tags: [ 'twig.extension' ]
 
     Onisep\IbexaImageMapBundle\Twig\ImageMapRuntime:
         arguments:
             $locationService: '@Ibexa\Contracts\Core\Repository\LocationService'
             $contentService: '@Ibexa\Contracts\Core\Repository\ContentService'
-        tags: ['twig.runtime']
+        tags: [ 'twig.runtime' ]
 
     Onisep\IbexaImageMapBundle\Form\LinkType:
         arguments:
             $contentService: '@Ibexa\Contracts\Core\Repository\ContentService'
-        tags: ['form.type']
+        tags: [ 'form.type' ]
 
     Onisep\IbexaImageMapBundle\Form\MapAreaType:
-        tags: ['form.type']
+        tags: [ 'form.type' ]
 
     Onisep\IbexaImageMapBundle\Form\MapAreasType:
-        tags: ['form.type']
+        tags: [ 'form.type' ]
 
     Onisep\IbexaImageMapBundle\Form\ImageMapType:
-        tags: ['form.type']
+        tags: [ 'form.type' ]
 
     Onisep\IbexaImageMapBundle\FormMapper\ImageMapFormMapper:
         arguments:
@@ -68,7 +69,7 @@ services:
     Onisep\IbexaImageMapBundle\Command\SchemaCommand:
         arguments:
             $connection: '@ibexa.persistence.connection'
-        tags: ['console.command']
+        tags: [ 'console.command' ]
 
     onisep.imagemap.unindexed:
         class: Ibexa\Core\FieldType\Unindexed
