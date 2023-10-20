@@ -1,16 +1,16 @@
 services:
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Type:
         arguments:
-            - ['@ibexa.fieldType.validator.black_list', '@ibexa.fieldType.validator.image']
+            - ['@ibexa.field_type.validator.black_list', '@ibexa.field_type.validator.image']
         tags:
             - { name: ibexa.field_type, alias: imagemap }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Storage:
         arguments:
-            - '@ibexa.fieldType.ezimage.storage_gateway'
-            - '@ibexa.fieldType.ezimage.io_service'
-            - '@ibexa.fieldType.ezimage.pathGenerator'
-            - '@ibexa.fieldType.metadataHandler.imagesize'
+            - '@ibexa.field_type.ezimage.storage_gateway'
+            - '@ibexa.field_type.ezimage.io_service'
+            - '@ibexa.field_type.ezimage.pathGenerator'
+            - '@ibexa.field_type.metadataHandler.imagesize'
             - '@ibexa.utils.deprecation_warner'
             - '@Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\LegacyStorage'
             - '@?ibexa.image_alias.imagine.alias_cleaner'
@@ -20,7 +20,7 @@ services:
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\FieldValueConverter:
         arguments:
-            - '@ibexa.fieldType.ezimage.io_service'
+            - '@ibexa.field_type.ezimage.io_service'
             - '@ibexa.core.io.image_fieldtype.legacy_url_redecorator'
         tags:
             - { name: ibexa.field_type.legacy_storage.converter, alias: imagemap, lazy: true, callback: '::create' }
