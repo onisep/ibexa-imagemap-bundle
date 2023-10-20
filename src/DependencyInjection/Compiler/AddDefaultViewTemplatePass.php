@@ -11,7 +11,7 @@ class AddDefaultViewTemplatePass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $parameter = $container->getParameter('ibexa.default.content_view_defaults');
+        $parameter = $container->getParameter('ibexa.site_access.config.default.content_view_defaults');
         $parameter['imagemap_embed'] = [
             'default' => [
                 'template' => '@ezdesign/default/content/imagemap_embed.html.twig',
@@ -25,6 +25,6 @@ class AddDefaultViewTemplatePass implements CompilerPassInterface
             ],
         ];
 
-        $container->setParameter('ibexa.default.content_view_defaults', $parameter);
+        $container->setParameter('ibexa.site_access.config.default.content_view_defaults', $parameter);
     }
 }
