@@ -9,7 +9,7 @@ services:
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Storage:
         arguments:
             - '@ibexa.field_type.ezimage.storage_gateway'
-            - '@ibexa.field_type.ezimage.io_service'
+            - '@ibexa.field_type.ezimage.io'
             - '@ibexa.field_type.ezimage.pathGenerator'
             - '@ibexa.field_type.metadataHandler.imagesize'
             - '@ibexa.utils.deprecation_warner'
@@ -21,15 +21,15 @@ services:
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\FieldValueConverter:
         arguments:
-            - '@ibexa.field_type.ezimage.io_service'
-            - '@ibexa.core.io.image_fieldtype.legacy_url_redecorator'
+            - '@ibexa.field_type.ezimage.io'
+            - '@Ibexa\Core\IO\UrlRedecorator'
         tags:
-            - { name: ibexa.field_type.legacy_storage.converter, alias: imagemap, lazy: true, callback: '::create' }
+            - { name: ibexa.field_type.storage.legacy.converter, alias: imagemap, lazy: true, callback: '::create' }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\LegacyStorage:
         arguments: [ '@Onisep\IbexaImageMapBundle\Database\ImageMapRepository' ]
         tags:
-            - { name: ibexa.field_type.external_storage_handler.gateway, alias: imagemap, identifier: LegacyStorage }
+            - { name: ibexa.field_type.storage.external.handler.gateway, alias: imagemap, identifier: LegacyStorage }
 
     Onisep\IbexaImageMapBundle\Database\ImageMapRepository:
         arguments: [ '@ibexa.persistence.connection' ]
