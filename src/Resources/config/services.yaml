@@ -8,16 +8,16 @@ services:
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\Storage:
         arguments:
-            - '@ibexa.field_type.ezimage.storage_gateway'
-            - '@ibexa.field_type.ezimage.io'
-            - '@ibexa.field_type.ezimage.pathGenerator'
-            - '@ibexa.field_type.metadataHandler.imagesize'
-            - '@ibexa.utils.deprecation_warner'
+            - '@Ibexa\Core\FieldType\Image\ImageStorage\Gateway\DoctrineStorage'
+            - '@Ibexa\Core\FieldType\Image\IO\Legacy'
+            - '@Ibexa\Core\FieldType\Image\PathGenerator\LegacyPathGenerator'
+            - '@Ibexa\Core\IO\MetadataHandler\ImageSize'
+            - '@Ibexa\Core\Base\Utils\DeprecationWarner'
             - '@Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway\LegacyStorage'
-            - '@?ibexa.image_alias.imagine.alias_cleaner'
+            - '@Ibexa\Core\FieldType\Image\AliasCleanerInterface'
             - '@Ibexa\Core\IO\FilePathNormalizerInterface'
         tags:
-            - { name: ibexa.field_type.external_storage_handler, alias: imagemap }
+            - { name: ibexa.field_type.storage.external.handler, alias: imagemap }
 
     Onisep\IbexaImageMapBundle\FieldType\ImageMap\FieldValueConverter:
         arguments:
