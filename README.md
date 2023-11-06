@@ -39,7 +39,7 @@ $ bin/console onisep:imagemap:dump-schema --update
 To build admin assets:
 
 ```shell script
-yarn encore prod --config-name=ezplatform
+yarn encore prod --config-name=ibexa
 ```
 
 For the front assets, you need to import the bundle files in your own entry points. For example, if your entry point is 
