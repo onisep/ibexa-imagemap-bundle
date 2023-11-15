@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\FieldType\ImageMap;
 
+use Ibexa\Contracts\Core\FieldType\StorageGatewayInterface;
 use Ibexa\Contracts\Core\Persistence\Content\Field;
 use Ibexa\Contracts\Core\Persistence\Content\VersionInfo;
-use Ibexa\Core\Base\Utils\DeprecationWarnerInterface as DeprecationWarner;
 use Ibexa\Core\FieldType\Image\AliasCleanerInterface;
 use Ibexa\Core\FieldType\Image\ImageStorage;
-use Ibexa\Core\FieldType\Image\ImageStorage\Gateway as ImageStorageGateway;
 use Ibexa\Core\FieldType\Image\PathGenerator;
 use Ibexa\Core\IO\FilePathNormalizerInterface;
 use Ibexa\Core\IO\IOServiceInterface;
@@ -24,16 +23,15 @@ class Storage extends ImageStorage
     private ImageMapStorageGateway $imageMapGateway;
 
     public function __construct(
-        ImageStorageGateway $baseGateway,
-        IOServiceInterface $IOService,
+        StorageGatewayInterface $gateway,
+        IOServiceInterface $ioService,
         PathGenerator $pathGenerator,
         MetadataHandler $imageSizeMetadataHandler,
-        DeprecationWarner $deprecationWarner,
-        ImageMapStorageGateway $imageMapGateway,
         AliasCleanerInterface $aliasCleaner,
-        FilePathNormalizerInterface $filePathNormalizer
+        FilePathNormalizerInterface $filePathNormalizer,
+        ImageMapStorageGateway $imageMapGateway
     ) {
-        parent::__construct($baseGateway, $IOService, $pathGenerator, $imageSizeMetadataHandler, $deprecationWarner, $aliasCleaner, $filePathNormalizer);
+        parent::__construct($gateway, $ioService, $pathGenerator, $imageSizeMetadataHandler, $aliasCleaner, $filePathNormalizer);
 
         $this->imageMapGateway = $imageMapGateway;
     }
