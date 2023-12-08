@@ -2,15 +2,15 @@
 
 {% block imagemap_row %}
     <div class="imagemap-edit" id="imagemap-container-{{ form.parent.vars.data.field.id }}">
-        {% set label_wrapper_attr = label_wrapper_attr|default({})|merge({'class': (label_wrapper_attr.class|default('') ~ 'ez-field-edit__label-wrapper')|trim}) %}
-        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' ez-field-edit__label')|trim}) %}
+        {% set label_wrapper_attr = label_wrapper_attr|default({})|merge({'class': (label_wrapper_attr.class|default('') ~ 'ibexa-field-edit__label-wrapper')|trim}) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' ibexa-field-edit__label')|trim}) %}
         <div{% with { attr: label_wrapper_attr } %}{{ block('attributes') }}{% endwith %}>
             {{- block('form_label') }}
         </div>
-        <div>
-            <button type="button" class="btn btn-info imagemap-draw-rect">{{ 'imagemap.button.draw.rect'|trans }}</button>
-            <button type="button" class="btn btn-info imagemap-draw-circle">{{ 'imagemap.button.draw.circle'|trans }}</button>
-            <button type="button" class="btn btn-info imagemap-draw-poly">{{ 'imagemap.button.draw.poly'|trans }}</button>
+        <div class="imagemap-draw-buttons">
+            <button type="button" class="ibexa-btn btn btn-info imagemap-draw-rect">{{ 'imagemap.button.draw.rect'|trans }}</button>
+            <button type="button" class="ibexa-btn btn btn-info imagemap-draw-circle">{{ 'imagemap.button.draw.circle'|trans }}</button>
+            <button type="button" class="ibexa-btn btn btn-info imagemap-draw-poly">{{ 'imagemap.button.draw.poly'|trans }}</button>
             <div hidden class="imagemap-help-rect">{{ 'imagemap.help.rect'|trans }}</div>
             <div hidden class="imagemap-help-circle">{{ 'imagemap.help.circle'|trans }}</div>
             <div hidden class="imagemap-help-poly">{{ 'imagemap.help.poly'|trans }}</div>
@@ -18,7 +18,7 @@
         {% set preview_block_name = 'ezimage_preview' %}
         {% set max_file_size = max_upload_size|round %}
         {% set attr = attr|merge({'accept': 'image/*'}) %}
-        {% set wrapper_attr = {'class': 'ez-field-edit--ezimage'} %}
+        {% set wrapper_attr = {'class': 'ibexa-field-edit--ezimage'} %}
         {% set label_wrapper_attr = {'hidden': true} %}
         {{ block('binary_base_row') }}
         {{ form_row(form.map) }}
@@ -50,7 +50,7 @@
                 {{ form_row(child) }}
             {% endfor %}
         </div>
-        <button type="button" class="btn btn-primary imagemap-add">{{ 'imagemap.button.link.label'|trans }}</button>
+        <button type="button" class="ibexa-btn btn btn-primary imagemap-add">{{ 'imagemap.button.link.label'|trans }}</button>
     </div>
 {% endblock %}
 
@@ -59,8 +59,8 @@
         <div class="row">
             <div class="col-1">
                 <button class="btn btn-danger imagemap-remove" type="button" title="{{ 'imagemap.area.button.delete.label'|trans }}">
-                    <svg class="ez-icon ez-icon--medium ez-icon--light">
-                        <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#trash"></use>
+                    <svg class="ibexa-icon ibexa-icon--medium ibexa-icon--light">
+                        <use xlink:href="/bundles/ibexaadminui/img/ibexa-icons.svg#trash"></use>
                     </svg>
                 </button>
             </div>
@@ -92,7 +92,7 @@
 
 {% block imagemap_link_row %}
     {% set internal = content is not null %}
-    <div class="imagemap-relation row" data-udw-config="{{ ez_udw_config('single', {
+    <div class="imagemap-relation row" data-udw-config="{{ ibexa_udw_config('single', {
         'type': 'object_relation',
         'allowed_content_types': form.parent.parent.parent.parent.vars.data.fieldDefinition.fieldSettings.selectionContentTypes
     }) }}">
@@ -105,12 +105,12 @@
         <div class="col-9">
             <div class="imagemap-relation-internal" {{ not internal ? 'hidden' }}>
                 <button class="btn btn-info imagemap-relation-browse" type="button" title="{{ 'imagemap.link.select_content'|trans }}">
-                    <svg class="ez-icon ez-icon--medium ez-icon--light">
-                        <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#browse"></use>
+                    <svg class="ibexa-icon ibexa-icon--medium ibexa-icon--light">
+                        <use xlink:href="/bundles/ibexaadminui/img/ibexa-icons.svg#browse"></use>
                     </svg>
                 </button>
                 <span class="imagemap-relation-name">
-                    {{ content ? ez_content_name(content) : 'imagemap.link.no_content'|trans }}
+                    {{ content ? ibexa_content_name(content) : 'imagemap.link.no_content'|trans }}
                 </span>
             </div>
             <div class="imagemap-relation-external" {{ internal ? 'hidden' }}>

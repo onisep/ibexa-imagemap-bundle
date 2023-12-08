@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\Twig;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class ImageMapRuntime implements RuntimeExtensionInterface

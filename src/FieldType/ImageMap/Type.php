@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\FieldType\ImageMap;
 
-use eZ\Publish\Core\FieldType\Image\Type as ImageType;
-use eZ\Publish\SPI\FieldType\Value as SPIValue;
-use eZ\Publish\SPI\Persistence\Content\FieldValue as PersistenceValue;
+use Ibexa\Contracts\Core\FieldType\Value as SPIValue;
+use Ibexa\Contracts\Core\Persistence\Content\FieldValue as PersistenceValue;
+use Ibexa\Core\FieldType\Image\Type as ImageType;
 
 /**
  * The ImageMap field type.

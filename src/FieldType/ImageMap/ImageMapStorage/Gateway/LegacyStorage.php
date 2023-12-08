@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway;
 
-use eZ\Publish\SPI\Persistence\Content\Field;
-use eZ\Publish\SPI\Persistence\Content\VersionInfo;
+use Ibexa\Contracts\Core\Persistence\Content\Field;
+use Ibexa\Contracts\Core\Persistence\Content\VersionInfo;
 use Onisep\IbexaImageMapBundle\Database\ImageMapRepository;
 
 class LegacyStorage
@@ -29,7 +29,7 @@ class LegacyStorage
 
         $exists = $this->repository->get($fieldId, $version);
 
-        if ($exists) {
+        if ($exists !== null) {
             $this->repository->update($fieldId, $version, $field->value->data['map']);
 
             return;
