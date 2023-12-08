@@ -62,8 +62,8 @@ services:
             $locationService: '@Ibexa\Contracts\Core\Repository\LocationService'
             $fieldTypeService: '@Ibexa\Contracts\Core\Repository\FieldTypeService'
         tags:
-            - { name: ibexa.field_type.form_mapper.definition, fieldType: imagemap }
-            - { name: ibexa.field_type.form_mapper.value, fieldType: imagemap }
+            - { name: ibexa.admin_ui.field_type.form.mapper.definition, fieldType: imagemap }
+            - { name: ibexa.admin_ui.field_type.form.mapper.value, fieldType: imagemap }
 
     Onisep\IbexaImageMapBundle\Command\SchemaCommand:
         arguments:

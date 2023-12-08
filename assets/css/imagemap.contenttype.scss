@@ -21,7 +21,7 @@
     border: 1px solid black;
 
     svg {
-      fill: #17a2b8;
+      fill: #ae1164;
       width: 40px;
       height: 40px;
     }
@@ -41,10 +41,37 @@
   svg {
     width: 50px;
     height: 50px;
-    fill: #17a2b8;
+    fill: #ae1164;
   }
 }
 
 .imagemap-shape {
   cursor: pointer;
+}
+
+.imagemap-edit {
+  .ibexa-field-edit--with-preview .ibexa-field-edit-preview__visual {
+    grid-template-columns: 100% auto;
+    grid-template-rows: 40.125rem auto;
+
+    .ibexa-field-edit-preview__details {
+      display: none;
+    }
+
+    .ibexa-field-edit-preview__media {
+      max-height: 40rem;
+    }
+  }
+}
+
+.imagemap-areas {
+  margin: 1rem 0 1rem 2.5rem;
+}
+
+.imagemap-add {
+  margin-left: 2.5rem;
+}
+
+.imagemap-draw-buttons {
+  margin-bottom: 1rem;
 }
