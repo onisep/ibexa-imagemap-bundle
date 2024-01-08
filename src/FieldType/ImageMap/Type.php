@@ -18,7 +18,7 @@ class Type extends ImageType
         return 'imagemap';
     }
 
-    public function validateFieldSettings($fieldSettings)
+    public function validateFieldSettings($fieldSettings): array
     {
         return [];
     }
