@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\FormMapper;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\FieldTypeService;
-use eZ\Publish\API\Repository\LocationService;
-use EzSystems\EzPlatformAdminUi\FieldType\Mapper\AbstractRelationFormMapper;
-use EzSystems\EzPlatformAdminUi\Form\Data\FieldDefinitionData;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\AdminUi\FieldType\Mapper\AbstractRelationFormMapper;
+use Ibexa\AdminUi\Form\Data\FieldDefinitionData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Ibexa\Contracts\Core\Repository\LocationService;
 use Onisep\IbexaImageMapBundle\DataTransformer\ImageMapTransformer;
 use Onisep\IbexaImageMapBundle\FieldType\ImageMap\Value;
 use Onisep\IbexaImageMapBundle\Form\ImageMapType;

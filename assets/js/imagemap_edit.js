@@ -106,7 +106,7 @@ const initImageMap = function (imageMap) {
 
   const prototype = areas.parentNode.dataset.prototype;
   const map = imageMap.querySelector('.imagemap-map');
-  const image = imageMap.querySelector('.ez-field-edit-preview__media');
+  const image = imageMap.querySelector('.ibexa-field-edit-preview__media');
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   const draw = SVG(svg);
   const parent = image.parentNode;
@@ -167,6 +167,20 @@ const initArea = function (area, map, draw) {
     target.querySelector('option[value="embed"]').hidden = true;
     target.querySelector('option[value="popin"]').hidden = true;
   }
+
+  area.querySelectorAll('.ibexa-dropdown').forEach((dropdownContainer) => {
+    const dropdownAlreadyInitialized = !!global.ibexa.helpers.objectInstances.getInstance(dropdownContainer);
+
+    if (dropdownAlreadyInitialized) {
+      return;
+    }
+
+    const dropdown = new global.ibexa.core.Dropdown({
+      container: dropdownContainer,
+    });
+
+    dropdown.init();
+  });
 
   recreateShape(area, draw);
 }

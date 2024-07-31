@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\Form;
 
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\ImageFieldType;
+use Ibexa\ContentForms\Form\Type\FieldType\ImageFieldType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 

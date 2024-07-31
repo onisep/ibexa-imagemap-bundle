@@ -24,7 +24,7 @@ class OnisepImageMapExtension extends Extension implements PrependExtensionInter
     {
         $adminUiFormsConfigFile = __DIR__.'/../Resources/config/admin_ui_forms.yaml';
         $config = Yaml::parseFile($adminUiFormsConfigFile);
-        $container->prependExtensionConfig('ezpublish', $config);
+        $container->prependExtensionConfig('ibexa', $config);
         $container->addResource(new FileResource($adminUiFormsConfigFile));
     }
 }
