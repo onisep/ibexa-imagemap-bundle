@@ -29,7 +29,7 @@ class LegacyStorage
 
         $exists = $this->repository->get($fieldId, $version);
 
-        if ($exists) {
+        if ($exists !== null) {
             $this->repository->update($fieldId, $version, $field->value->data['map']);
 
             return;
