@@ -30,13 +30,17 @@
       outline: none;
     }
   }
+
+  .row .col-1 {
+    padding: 0;
+  }
 }
 
 .imagemap-go-up {
   height: 0;
   position: sticky;
   top: 10px;
-  margin-left: -60px;
+  margin-left: -42px;
 
   svg {
     width: 50px;

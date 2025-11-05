@@ -6,57 +6,43 @@ namespace Onisep\IbexaImageMapBundle\Command;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Schema\Table;
 use Onisep\IbexaImageMapBundle\Database\ImageMapRepository;
 use Onisep\IbexaImageMapBundle\Database\SchemaProvider;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Attribute\Option;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class SchemaCommand extends Command
+#[AsCommand(name: 'onisep:imagemap:dump-schema', description: 'Generates schema create / update SQL queries', help: <<<'TXT'
+The <info>%command.name%</info> help you to generate SQL Query to create or update your database schema for this bundle
+TXT)]
+class SchemaCommand
 {
-    protected static $defaultName = 'onisep:imagemap:dump-schema';
-
-    private Connection $connection;
-
-    public function __construct(Connection $connection)
+    public function __construct(private readonly Connection $connection)
     {
-        parent::__construct();
-
-        $this->connection = $connection;
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function configure()
-    {
-        $this
-            ->setDescription('Generates schema create / update SQL queries')
-            ->setHelp('The <info>%command.name%</info> help you to generate SQL Query to create or update your database schema for this bundle')
-            ->addOption('update', null, InputOption::VALUE_NONE, 'Dump only the update SQL queries.')
-        ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    public function __invoke(
+        #[Option(description: 'Dump only the update SQL queries.', name: 'update')]
+        bool $update = false,
+        ?SymfonyStyle $symfonyStyle = null
+    ): int
     {
         $schemaProvider = new SchemaProvider();
         $schema = $schemaProvider->createSchema();
 
         $sqls = $schema->toSql($this->connection->getDatabasePlatform());
 
-        if ($input->getOption('update')) {
+        if ($update) {
             $sm = $this->connection->getSchemaManager();
 
             $tableArray = [ImageMapRepository::TABLE_NAME];
             $tables = [];
             foreach ($sm->listTables() as $table) {
-                /** @var Table $table */
+                /** @var \Doctrine\DBAL\Schema\Table $table */
                 if (in_array($table->getName(), $tableArray)) {
                     $tables[] = $table;
                 }
@@ -78,11 +64,9 @@ class SchemaCommand extends Command
 
             $sqls = $schema->getMigrateFromSql($oldSchema, $this->connection->getDatabasePlatform());
         }
-
-        $io = new SymfonyStyle($input, $output);
-        $io->text('Execute these SQL Queries on your database:');
+        $symfonyStyle->text('Execute these SQL Queries on your database:');
         foreach ($sqls as $sql) {
-            $io->text($sql.';');
+            $symfonyStyle->text($sql.';');
         }
 
         return 0;

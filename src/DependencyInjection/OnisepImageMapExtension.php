@@ -14,17 +14,17 @@ use Symfony\Component\Yaml\Yaml;
 
 class OnisepImageMapExtension extends Extension implements PrependExtensionInterface
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yaml');
+        $yamlFileLoader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $yamlFileLoader->load('services.yaml');
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $adminUiFormsConfigFile = __DIR__.'/../Resources/config/admin_ui_forms.yaml';
         $config = Yaml::parseFile($adminUiFormsConfigFile);
-        $container->prependExtensionConfig('ezpublish', $config);
+        $container->prependExtensionConfig('ibexa', $config);
         $container->addResource(new FileResource($adminUiFormsConfigFile));
     }
 }

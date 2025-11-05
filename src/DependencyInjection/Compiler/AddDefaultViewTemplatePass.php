@@ -9,22 +9,22 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class AddDefaultViewTemplatePass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
-        $parameter = $container->getParameter('ezsettings.default.content_view_defaults');
+        $parameter = $container->getParameter('ibexa.site_access.config.default.content_view_defaults');
         $parameter['imagemap_embed'] = [
             'default' => [
-                'template' => '@ezdesign/default/content/imagemap_embed.html.twig',
+                'template' => '@ibexadesign/default/content/imagemap_embed.html.twig',
                 'match' => [],
             ],
         ];
         $parameter['imagemap_popin'] = [
             'default' => [
-                'template' => '@ezdesign/default/content/imagemap_popin.html.twig',
+                'template' => '@ibexadesign/default/content/imagemap_popin.html.twig',
                 'match' => [],
             ],
         ];
 
-        $container->setParameter('ezsettings.default.content_view_defaults', $parameter);
+        $container->setParameter('ibexa.site_access.config.default.content_view_defaults', $parameter);
     }
 }

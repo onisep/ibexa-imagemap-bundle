@@ -9,12 +9,14 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class MapAreasType extends AbstractType
 {
-    public function getParent()
+    #[\Override]
+    public function getParent(): ?string
     {
         return CollectionType::class;
     }
 
-    public function getBlockPrefix()
+    #[\Override]
+    public function getBlockPrefix(): string
     {
         return 'imagemap_map_areas';
     }

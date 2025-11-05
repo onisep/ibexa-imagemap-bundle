@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class MapAreaType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('shape', ChoiceType::class, [
@@ -50,7 +50,8 @@ class MapAreaType extends AbstractType
         ;
     }
 
-    public function getBlockPrefix()
+    #[\Override]
+    public function getBlockPrefix(): string
     {
         return 'imagemap_map_area';
     }

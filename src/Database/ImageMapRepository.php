@@ -9,13 +9,10 @@ use Doctrine\DBAL\Types\Types;
 
 class ImageMapRepository
 {
-    public const TABLE_NAME = 'onisep_imagemap';
+    public const string TABLE_NAME = 'onisep_imagemap';
 
-    private Connection $connection;
-
-    public function __construct(Connection $connection)
+    public function __construct(private readonly Connection $connection)
     {
-        $this->connection = $connection;
     }
 
     public function create(int $fieldId, int $version, array $map): void
@@ -47,17 +44,17 @@ class ImageMapRepository
 
     public function get(int $fieldId, int $version): ?array
     {
-        $query = $this->connection->createQueryBuilder();
-        $query
+        $queryBuilder = $this->connection->createQueryBuilder();
+        $queryBuilder
             ->select('map')
             ->from(self::TABLE_NAME)
             ->where('field_id = :fieldId')
             ->andWhere('version = :version')
-            ->setParameter(':fieldId', $fieldId)
-            ->setParameter(':version', $version)
+            ->setParameter('fieldId', $fieldId)
+            ->setParameter('version', $version)
         ;
 
-        $results = $query->execute()->fetchOne();
+        $results = $queryBuilder->executeQuery()->fetchOne();
 
         return $results ? json_decode($results, true) : null;
     }

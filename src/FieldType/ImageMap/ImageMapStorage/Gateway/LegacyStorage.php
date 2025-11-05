@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\FieldType\ImageMap\ImageMapStorage\Gateway;
 
-use eZ\Publish\SPI\Persistence\Content\Field;
-use eZ\Publish\SPI\Persistence\Content\VersionInfo;
+use Ibexa\Contracts\Core\Persistence\Content\Field;
+use Ibexa\Contracts\Core\Persistence\Content\VersionInfo;
 use Onisep\IbexaImageMapBundle\Database\ImageMapRepository;
 
 class LegacyStorage
 {
-    private ImageMapRepository $repository;
-
-    public function __construct(ImageMapRepository $repository)
+    public function __construct(private readonly ImageMapRepository $imageMapRepository)
     {
-        $this->repository = $repository;
     }
 
     public function getMap(int $fieldId, int $version): ?array
     {
-        return $this->repository->get($fieldId, $version);
+        return $this->imageMapRepository->get($fieldId, $version);
     }
 
     public function saveMap(VersionInfo $versionInfo, Field $field): void
@@ -27,14 +24,14 @@ class LegacyStorage
         $fieldId = $field->id;
         $version = $versionInfo->versionNo;
 
-        $exists = $this->repository->get($fieldId, $version);
+        $exists = $this->imageMapRepository->get($fieldId, $version);
 
         if ($exists) {
-            $this->repository->update($fieldId, $version, $field->value->data['map']);
+            $this->imageMapRepository->update($fieldId, $version, $field->value->data['map']);
 
             return;
         }
 
-        $this->repository->create($fieldId, $version, $field->value->data['map']);
+        $this->imageMapRepository->create($fieldId, $version, $field->value->data['map']);
     }
 }

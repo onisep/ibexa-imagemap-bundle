@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\Form;
 
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\ImageFieldType;
+use Ibexa\ContentForms\Form\Type\FieldType\ImageFieldType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class ImageMapType extends AbstractType
 {
-    public function getParent()
+    #[\Override]
+    public function getParent(): ?string
     {
         return ImageFieldType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('map', MapAreasType::class, [
@@ -32,7 +33,8 @@ class ImageMapType extends AbstractType
         ;
     }
 
-    public function getBlockPrefix()
+    #[\Override]
+    public function getBlockPrefix(): string
     {
         return 'imagemap';
     }

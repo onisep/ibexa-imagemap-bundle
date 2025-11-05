@@ -4,30 +4,34 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\FieldType\ImageMap;
 
-use eZ\Publish\Core\FieldType\Image\Type as ImageType;
-use eZ\Publish\SPI\FieldType\Value as SPIValue;
-use eZ\Publish\SPI\Persistence\Content\FieldValue as PersistenceValue;
+use Ibexa\Core\FieldType\Image\Type as ImageType;
+use Ibexa\Contracts\Core\FieldType\Value as SPIValue;
+use Ibexa\Contracts\Core\Persistence\Content\FieldValue as PersistenceValue;
 
 /**
  * The ImageMap field type.
  */
 class Type extends ImageType
 {
-    public function getFieldTypeIdentifier()
+    #[\Override]
+    public function getFieldTypeIdentifier(): string
     {
         return 'imagemap';
     }
 
-    public function validateFieldSettings($fieldSettings)
+    #[\Override]
+    public function validateFieldSettings($fieldSettings): array
     {
         return [];
     }
 
+    #[\Override]
     public function fromHash($hash)
     {
         return empty($hash) ? $this->getEmptyValue() : new Value($hash);
     }
 
+    #[\Override]
     public function toHash(SPIValue $value)
     {
         $parentHash = parent::toHash($value);
@@ -38,11 +42,13 @@ class Type extends ImageType
         return $parentHash + ['map' => $value->map];
     }
 
+    #[\Override]
     public function getEmptyValue()
     {
         return new Value();
     }
 
+    #[\Override]
     public function fromPersistenceValue(PersistenceValue $fieldValue)
     {
         if (null === $fieldValue->data) {

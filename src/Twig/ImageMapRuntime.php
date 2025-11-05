@@ -4,21 +4,16 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\Twig;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class ImageMapRuntime implements RuntimeExtensionInterface
 {
-    private LocationService $locationService;
-    private ContentService $contentService;
-
-    public function __construct(LocationService $locationService, ContentService $contentService)
+    public function __construct(private readonly LocationService $locationService, private readonly ContentService $contentService)
     {
-        $this->locationService = $locationService;
-        $this->contentService = $contentService;
     }
 
     public function loadImageMapItems(Field $field): array
@@ -39,7 +34,7 @@ class ImageMapRuntime implements RuntimeExtensionInterface
                 continue;
             }
 
-            $linkContentId = (int) substr($map['link'], 11);
+            $linkContentId = (int) substr((string) $map['link'], 11);
             try {
                 $linkLocation = $this->locationService->loadLocation(
                     $this->contentService->loadContentInfo($linkContentId)->mainLocationId
@@ -50,7 +45,7 @@ class ImageMapRuntime implements RuntimeExtensionInterface
 
                 $map['content'] = $this->contentService->loadContent($linkContentId);
                 $map['link'] = '#';
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 continue;
             }
 

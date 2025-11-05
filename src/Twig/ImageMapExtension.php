@@ -9,6 +9,7 @@ use Twig\TwigFunction;
 
 class ImageMapExtension extends AbstractExtension
 {
+    #[\Override]
     public function getFunctions()
     {
         return [

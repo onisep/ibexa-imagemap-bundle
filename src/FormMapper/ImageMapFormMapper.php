@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Onisep\IbexaImageMapBundle\FormMapper;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\FieldTypeService;
-use eZ\Publish\API\Repository\LocationService;
-use EzSystems\EzPlatformAdminUi\FieldType\Mapper\AbstractRelationFormMapper;
-use EzSystems\EzPlatformAdminUi\Form\Data\FieldDefinitionData;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\AdminUi\FieldType\Mapper\AbstractRelationFormMapper;
+use Ibexa\AdminUi\Form\Data\FieldDefinitionData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Onisep\IbexaImageMapBundle\DataTransformer\ImageMapTransformer;
 use Onisep\IbexaImageMapBundle\FieldType\ImageMap\Value;
 use Onisep\IbexaImageMapBundle\Form\ImageMapType;
@@ -19,16 +19,12 @@ use Symfony\Component\Form\FormInterface;
 
 class ImageMapFormMapper extends AbstractRelationFormMapper implements FieldValueFormMapperInterface
 {
-    private FieldTypeService $fieldTypeService;
-
     public function __construct(
         ContentTypeService $contentTypeService,
         LocationService $locationService,
-        FieldTypeService $fieldTypeService
+        private readonly FieldTypeService $fieldTypeService
     ) {
         parent::__construct($contentTypeService, $locationService);
-
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function mapFieldDefinitionForm(FormInterface $fieldDefinitionForm, FieldDefinitionData $data): void
@@ -41,17 +37,17 @@ class ImageMapFormMapper extends AbstractRelationFormMapper implements FieldValu
                 'multiple' => true,
                 'required' => false,
                 'property_path' => 'fieldSettings[selectionContentTypes]',
-                'label' => 'field_definition.ezobjectrelationlist.selection_content_types',
+                'label' => 'field_definition.ibexa_object_relation_list.selection_content_types',
                 'disabled' => $isTranslation,
             ])
         ;
     }
 
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
-        $fieldType = $this->fieldTypeService->getFieldType($fieldDefinition->fieldTypeIdentifier);
+        $fieldType = $this->fieldTypeService->getFieldType($fieldDefinition->getFieldTypeIdentifier());
 
         $fieldForm
             ->add(
@@ -60,12 +56,12 @@ class ImageMapFormMapper extends AbstractRelationFormMapper implements FieldValu
                         'value',
                         ImageMapType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                             'is_alternative_text_required' => false,
                         ]
                     )
-                    ->addModelTransformer(new ImageMapTransformer($fieldType, $data->value, Value::class))
+                    ->addModelTransformer(new ImageMapTransformer($fieldType, $data->getValue(), Value::class))
                     ->setAutoInitialize(false)
                     ->getForm()
             );

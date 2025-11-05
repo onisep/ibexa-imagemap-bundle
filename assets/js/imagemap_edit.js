@@ -106,7 +106,7 @@ const initImageMap = function (imageMap) {
 
   const prototype = areas.parentNode.dataset.prototype;
   const map = imageMap.querySelector('.imagemap-map');
-  const image = imageMap.querySelector('.ez-field-edit-preview__media');
+  const image = imageMap.querySelector('.ibexa-field-edit-preview__media');
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   const draw = SVG(svg);
   const parent = image.parentNode;
@@ -168,6 +168,18 @@ const initArea = function (area, map, draw) {
     target.querySelector('option[value="popin"]').hidden = true;
   }
 
+  const dropdowns = area.querySelectorAll('.ibexa-dropdown');
+  dropdowns.forEach((dropdownContainer) => {
+    if (dropdownContainer.ibexaInstance) {
+        return;
+    }
+    const dropdown = new window.ibexa.core.Dropdown({
+      container: dropdownContainer,
+    });
+
+    dropdown.init();
+  });
+
   recreateShape(area, draw);
 }
 
@@ -227,26 +239,23 @@ const changeLinkType = function (area) {
   }
 }
 
-const confirmUDW = function (widget, container, e) {
+const confirmUDW = function (widget, udwRoot, e) {
   const source = widget.querySelector('.imagemap-relation-source');
   source.value = 'ezobject://'+e[0].ContentInfo.Content._id;
   widget.querySelector('.imagemap-relation-name').textContent = e[0].ContentInfo.Content.TranslatedName;
-  ReactDOM.unmountComponentAtNode(container);
+  udwRoot.unmount();
 }
 
 const showUDW = function (config, widget) {
   const container = document.querySelector('#react-udw');
-  const token = document.querySelector('meta[name="CSRF-Token"]').content;
-  const siteaccess = document.querySelector('meta[name="SiteAccess"]').content;
-  ReactDOM.render(React.createElement(eZ.modules.UniversalDiscovery, {
-    restInfo: {
-      token,
-      siteaccess,
-    },
-    onConfirm: confirmUDW.bind(null, widget, container),
-    onCancel: () => ReactDOM.unmountComponentAtNode(container),
-    ...config
-  }), container);
+  const udwRoot = window.ReactDOMClient.createRoot(container);
+  udwRoot.render(
+    React.createElement(window.ibexa.modules.UniversalDiscovery, {
+      onConfirm: confirmUDW.bind(null, widget, udwRoot),
+      onCancel: () => udwRoot.unmount(),
+      ...config,
+    }),
+  );
 }
 
 const initUDW = function (widget) {

@@ -11,13 +11,14 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class OnisepImageMapBundle extends Bundle
 {
-    protected $name = 'OnisepImageMapBundle';
+    protected string $name = 'OnisepImageMapBundle';
 
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new AddDefaultViewTemplatePass());
     }
 
+    #[\Override]
     protected function getContainerExtensionClass(): string
     {
         return OnisepImageMapExtension::class;
